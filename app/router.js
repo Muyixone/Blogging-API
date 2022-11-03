@@ -1,19 +1,16 @@
 const express = require('express');
 
-const BlogController = require('./controllers/blogpost.controller');
+const {
+  getAllBlogs,
+  createBlog,
+  getBlogById,
+  updateBlog,
+  deleteBlog,
+} = require('./controllers/blogpost.controller');
 
-module.exports = (app) => {
-  //Routes definitions
-  const apiRoutes = express.Router();
-  const blogPostRoutes = express.Router();
+const router = express.Router();
 
-  //middleware definitions for apiRoutes
-  apiRoutes.use('/blogposts', blogPostRoutes);
+router.route('/').get(getAllBlogs).post(createBlog);
+router.route('/:id').get(getBlogById).put(updateBlog).delete(deleteBlog);
 
-  //Blog Post Routes/////////////////
-  //Post a new blog post
-  blogPostRoutes.post('/', BlogController.publishPost);
-
-  //Url for all API Routes
-  app.use('/api', apiRoutes);
-};
+module.exports = router;

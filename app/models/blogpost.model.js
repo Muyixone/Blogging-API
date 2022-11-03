@@ -4,6 +4,10 @@ const Schema = mongoose.Schema;
 //BlogPost schema
 const BlogPostSchema = mongoose.Schema(
   {
+    url: {
+      type: String,
+      unique: true,
+    },
     title: {
       type: String,
       required: true,

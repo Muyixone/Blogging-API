@@ -1,8 +1,9 @@
 const config = {
   port: process.env.PORT || 3500,
-  db: 'mongodb://localhost/muyiblog',
+  db: 'mongodb+srv://Muyi:Emwins@cluster0.je3dfkc.mongodb.net/blogpost?retryWrites=true&w=majority',
   test_port: 4242,
-  test_db: 'mongodb://localhost/muyiblog_test',
+  test_db:
+    'mongodb+srv://Muyi:Emwins@cluster0.je3dfkc.mongodb.net/test_blogpost?retryWrites=true&w=majority',
 };
 
 module.exports = config;
