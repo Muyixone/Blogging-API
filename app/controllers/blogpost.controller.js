@@ -1,6 +1,6 @@
 const blogService = require('../Services/BlogService');
 
-exports.getAllBlogs = async (rerq, res) => {
+exports.getAllBlogs = async (req, res) => {
   try {
     const blogs = await blogService.getAllBlogs();
     res.status(201).json({
@@ -12,13 +12,12 @@ exports.getAllBlogs = async (rerq, res) => {
   }
 };
 
-exports.createBlog = async (req, res) => {
+exports.creatBlog = async (req, res) => {
   try {
-    const blog = await blogService.createBlog(req.body);
-    console.log(blog);
+    const blog = await blogService.creatBlog(req.body);
     res.status(201).json({
-      data: blog,
-      message: 'Success creating blog',
+      blog,
+      message: 'Blog Created successfully',
     });
   } catch (err) {
     res.status(500).json({ error: err.message });

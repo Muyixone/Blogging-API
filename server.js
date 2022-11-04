@@ -8,6 +8,7 @@ const Blogroute = require('./app/router');
 const app = express();
 
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/api/blogs', Blogroute);
 
 if (process.env.NODE_ENV === 'test') {
