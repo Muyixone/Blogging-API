@@ -22,7 +22,7 @@ const signInToken = (id) => {
 //Sign up a new user
 exports.createUser = async (req, res, next) => {
   try {
-    const user = await userService.createUser({
+    const newUser = await userService.createUser({
       firstname: req.body.firstname,
       lastname: req.body.lastname,
       email: req.body.email,

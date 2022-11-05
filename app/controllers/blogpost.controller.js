@@ -16,7 +16,7 @@ exports.creatBlog = async (req, res) => {
   try {
     const { title, body, tags, author } = req.body;
     //const {id} = req.user
-    //const author = `${req.user.first_name} ${req.user.last_name}`;
+    //const author = `${req.user.firstname} ${req.user.lastname}`;
     const readtime = Math.ceil(body.split(/\s+/).length / 250);
     const readingTime =
       readtime < 1 ? `${readtime + 1} minute read` : `${readtime} minutes read`;
