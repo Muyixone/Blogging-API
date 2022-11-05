@@ -14,7 +14,20 @@ exports.getAllBlogs = async (req, res) => {
 
 exports.creatBlog = async (req, res) => {
   try {
-    const blog = await blogService.creatBlog(req.body);
+    const { title, body, tags, author } = req.body;
+    //const {id} = req.user
+    //const author = `${req.user.first_name} ${req.user.last_name}`;
+    const readtime = Math.ceil(body.split(/\s+/).length / 250);
+    const readingTime =
+      readtime < 1 ? `${readtime + 1} minute read` : `${readtime} minutes read`;
+
+    const blog = await blogService.creatBlog({
+      title,
+      body,
+      tags,
+      author,
+      read_time: readingTime,
+    });
     res.status(201).json({
       blog,
       message: 'Blog Created successfully',
@@ -59,22 +72,3 @@ exports.deleteBlog = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
-
-//Create a new blog post
-// exports.publishPost = async (req, res) => {
-//   const NewBlogPost = await new BlogPost(req.body);
-
-//   NewBlogPost.save((err, blogPost) => {
-//     if (err) {
-//       return res.status(422).json({
-//         message: 'Server encountered an error publishing blog post',
-//         err: err,
-//       });
-//     } else {
-//       return res.status(201).json({
-//         message: 'Successfully published blog post',
-//         blogPost,
-//       });
-//     }
-//   });
-// };
